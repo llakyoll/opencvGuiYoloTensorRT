@@ -67,27 +67,35 @@ def main():
         panel_y = cam_y - 35
         cvui.window(frame, panel_x, panel_y, panel_w, panel_h, "Control Panel")
 
-        btn_w = int(panel_w * 0.35)
+        btn_w = int(panel_w * 0.45)
         btn_h = int(panel_h * 0.12)
         btn_x_offset = int(panel_w*0.05)
+        btn_x_offset_2 = int(panel_w*0.52)
 
         # Take Snapshot
         if cvui.button(frame, panel_x + btn_x_offset, panel_y + int(panel_h*0.1), btn_w, btn_h, "Take Snapshot"):
             cv2.imwrite("capture.jpg", img)
             print("Snapshot saved!")
 
+        if cvui.button(frame, panel_x + btn_x_offset_2, panel_y + int(panel_h*0.1), btn_w, btn_h, "Take2"):
+            print("Take2 pushed!")
         # Pause / Resume Camera
         if cvui.button(frame, panel_x + btn_x_offset, panel_y + int(panel_h*0.25), btn_w, btn_h, cam_button_string):
             if is_cam_running:
                 is_cam_running = False
                 cam_button_string = "Start Camera"
+                system_status = "Camera Stopped!"
                 cam.stop()
             else:
                 is_cam_running = True
                 cam_button_string = "Pause Camera"
+                system_status = "Camera Working"
                 cam.start()
-
+        if cvui.button(frame, panel_x + btn_x_offset_2, panel_y + int(panel_h * 0.25), btn_w, btn_h, "Take3"):
+            print("Take2 pushed!")
         if cvui.button(frame, panel_x + btn_x_offset, panel_y + int(panel_h*0.40), btn_w, btn_h, "Apply Filter"):
+            print("Apply Filter clicked")
+        if cvui.button(frame, panel_x + btn_x_offset_2, panel_y + int(panel_h*0.40), btn_w, btn_h, "Take 4"):
             print("Apply Filter clicked")
 
         # Checkbox başlığı ve çizgi
@@ -102,15 +110,15 @@ def main():
                  line_color, 1)
 
         # Checkboxlar
-        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start, "Option 1", checkbox1):
+        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start, "Model 1", checkbox1):
             checkbox1[0] = True
             checkbox2[0] = False
             checkbox3[0] = False
-        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start + checkbox_spacing, "Option 2", checkbox2):
+        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start + checkbox_spacing, "Model 2", checkbox2):
             checkbox1[0] = False
             checkbox2[0] = True
             checkbox3[0] = False
-        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start + 2 * checkbox_spacing, "Option 3", checkbox3):
+        if cvui.checkbox(frame, panel_x + btn_x_offset, checkbox_y_start + 2 * checkbox_spacing, "Model 3", checkbox3):
             checkbox1[0] = False
             checkbox2[0] = False
             checkbox3[0] = True
