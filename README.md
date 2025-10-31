@@ -11,6 +11,7 @@ Bu README dosyası, OpenCV ve CVUI kullanımıyla ilgili önemli notları, ipuç
   ```bash
   pip install opencv-python
   pip install opencv-contrib-python
+  pip install pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
   ```
 
 * **Temel işlevler:**
@@ -101,6 +102,42 @@ Bu README dosyası, OpenCV ve CVUI kullanımıyla ilgili önemli notları, ipuç
 
   * `cvui.text(frame, x, y, "Text", scale, color)`
   * `cv2.line(frame, pt1, pt2, color, thickness)`
+Başlatma
+import cvui
+cvui.init('Pencere Adı')
+
+Text (Yazı)
+cvui.text(frame, x, y, "Yazı Metni", scale=0.5, color=0xFFFFFF)
+
+Buton
+if cvui.button(frame, x, y, width, height, "Button Text"):
+    print("Button clicked!")
+
+Checkbox
+checked = [False]
+if cvui.checkbox(frame, x, y, "Option 1", checked):
+    print("Checkbox seçildi")
+
+Slider
+value = [50]
+cvui.trackbar(frame, x, y, width, value, min_value, max_value)
+
+Window (Panel)
+cvui.window(frame, x, y, width, height, "Başlık")
+
+Güncelleme ve Gösterim
+cvui.update()
+cv2.imshow("Pencere", frame)
+
+Önemli Notlar
+
+Frame temizliği: Döngü başında frame[:] = (R, G, B) ile arka plan temizlenmeli.
+
+Koordinatlar ve boyutlar: Elemanların pencereden taşmamasına dikkat edin.
+
+Checkbox ve Slider: Liste kullanımı zorunlu [False] veya [50].
+
+Döngü bitirme: cv2.waitKey(20) ile ESC tuşu veya Exit butonu ile çıkılabilir.
 
 * **Önemli ipucu:**
   CVUI GUI ile çalışırken **frame sürekli güncellenmeli**, yoksa buton ve checkboxlar çalışmaz
