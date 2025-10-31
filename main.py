@@ -4,7 +4,7 @@ from ultralytics import NAS, YOLO
 import torch
 
 # YOLOv8 modelini GPU'ya yükle
-model = YOLO("yolov8xInt8.engine")
+model = YOLO("models/yolov8xFP16.engine")
 
 cap = cv2.VideoCapture(0)
 # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
